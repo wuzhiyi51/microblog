@@ -19,7 +19,7 @@ class User(db.Model):
     followed = db.relationship('User',
                              secondary=followers,
                              primaryjoin=(followers.c.follower_id == id),
-                             secondaryjoin=(followers.c.follower_id == id),
+                             secondaryjoin=(followers.c.followed_id == id),
                              backref=db.backref('followers', lazy='dynamic'),
                              lazy='dynamic'
                              )
@@ -55,7 +55,10 @@ class User(db.Model):
             self.followed.remove(user)
             return self
     def is_following(self, user):
-        return self.followed.filter(followers.c.followed_id == user.id.count() > 0)
+        return self.followed.filter(followers.c.followed_id == user.id).count > 0
+    
+    def followed_posts(self):
+        return Post.query.join(followers, (followers.c.followed_id == Post.user_id)).filter(followers.c.follower_id == self.id).order_by(Post.timestamp.desc())
     
     @staticmethod
     def make_unique_nickname(nickname):
