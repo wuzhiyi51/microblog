@@ -2,8 +2,8 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Hi, {{g.user.nickname}}</h1>
-
-<form action="/" method="POST" name="post">
+{% include 'flash.html' %}
+<form class="form-horizontal" action="/" method="POST" name="post">
   {{form.hidden_tag()}}
   <table>
   	<tr>
