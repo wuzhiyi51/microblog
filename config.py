@@ -14,14 +14,22 @@ OPENID_PROVIDERS = [
                   { 'name': 'Flickr', 'url': 'http://www.flickr.com/<username>' },
                   { 'name': 'MyOpenID', 'url': 'https://www.myopenid.com' }
                   ]
-# mail server settings
-MAIL_SERVER = 'localhost'
-MAIL_PORT = 25
-MAIL_USERNAME = None
-MAIL_PASSWORD = None
 
-# administrator list
-ADMINS = ['you@example.com']
 
 # pagination
 POSTS_PER_PAGE = 3
+
+WHOOSH_BASE = os.path.join(basedir, 'search.db')
+
+MAX_SEARCH_RESULTS = 50
+
+# email Server
+MAIL_SERVER = 'smtp.163.com'
+MAIL_PORT = '587'
+MAIL_USE_TLS = True
+MAIL_USE_SSL = True
+MAIL_USERNAME = 'wuzhiyi51@163.com'
+MAIL_PASSWORD = 'wuzhiyi541'
+
+# administrator list
+ADMINS = ['wuzhiyi51@163.com']
